@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Override Prime Checksum Verifier</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .box {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    code {
+      background-color: #eee;
+      padding: 0.3rem;
+      border-radius: 5px;
+    }
+    .valid {
+      color: green;
+      font-weight: bold;
+    }
+    .invalid {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Override Prime Identity Verification</h1>
+    <p id="result">Memproses checksum...</p>
+  </div>
+
+  <script>
+    const validHash = "b6235f1cb91a023bf63b997e58f763c70540eafa7adce6f49a246e366ab711d4";
+    const params = new URLSearchParams(window.location.search);
+    const inputHash = params.get("checksum");
+    const result = document.getElementById("result");
+
+    if (!inputHash) {
+      result.innerHTML = '<span class="invalid">Checksum tidak ditemukan dalam URL.</span>';
+    } else if (inputHash === validHash) {
+      result.innerHTML = `<span class="valid">✅ Checksum valid.</span><br>
+      Pemilik: <strong>LAMRI</strong><br>
+      Node: <code>LIF-infinity</code><br>
+      ID: <code>#LIF.T1A.LAMRI.OVERRIDE</code>`;
+    } else {
+      result.innerHTML = `<span class="invalid">❌ Checksum tidak dikenal.</span><br>
+      Tidak cocok dengan Override Prime yang tercatat.`;
+    }
+  </script>
+</body>
+</html>
