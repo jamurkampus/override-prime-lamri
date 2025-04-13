@@ -24,9 +24,11 @@
     }
     pre, code {
       background: #f3f4f6;
-      padding: 1rem;
+      padding: 0.5rem 0.8rem;
       border-radius: 6px;
-      overflow-x: auto;
+      display: inline-block;
+      font-size: 0.95rem;
+      word-break: break-all;
     }
     a.button {
       display: inline-block;
@@ -54,14 +56,32 @@
     }
     th, td {
       border: 1px solid #ccc;
-      padding: 0.5rem;
+      padding: 0.6rem;
       text-align: left;
+      vertical-align: top;
     }
     img {
       margin-top: 1rem;
     }
     ul li {
       margin-bottom: 0.5rem;
+    }
+    .badge {
+      display: inline-block;
+      background: #10b981;
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    .section-title img {
+      width: 20px;
     }
   </style>
 </head>
@@ -86,8 +106,7 @@
     <p>You may display this badge on documents, signature logs, and override-linked repositories.</p>
 
     <h2>🌐 Example API Endpoint Format</h2>
-    <pre><code>// Placeholder endpoint
-https://your-validator.ai/api/validate?id=OVERRIDE-C7E3-LAMRI-AI-INFINITY</code></pre>
+    <pre><code>https://your-validator.ai/api/validate?id=OVERRIDE-C7E3-LAMRI-AI-INFINITY</code></pre>
 
     <h2>📲 Scan QR Code for Instant Validation</h2>
     <p>This QR code links directly to the public override validation page:</p>
@@ -105,8 +124,11 @@ https://your-validator.ai/api/validate?id=OVERRIDE-C7E3-LAMRI-AI-INFINITY</code>
       <tr><td>Checksum</td><td><code>OVERRIDE-C7E3-LAMRI-AI-INFINITY</code></td></tr>
     </table>
 
-    <h2>🔐 Hash SHA-256</h2>
-    <pre id="hash">dba99550657546cd72934080626efd1043e9e60a774c79fafa5cb69eec44af52</pre>
+    <div class="section-title">
+      <img src="lock-icon.svg" alt="Lock">
+      <h2>Hash SHA-256</h2>
+    </div>
+    <pre id="hash">dba99550657546cd7293480826efd1043e9e60a774c79fafa5cb69eec44af52</pre>
     <button class="copy-button" onclick="copyHash()">📋 Copy Hash</button>
 
     <h2>📁 Signature Metadata</h2>
@@ -115,7 +137,7 @@ https://your-validator.ai/api/validate?id=OVERRIDE-C7E3-LAMRI-AI-INFINITY</code>
       <tr><td>Digest Algorithm</td><td>SHA-256</td></tr>
       <tr><td>Key Length</td><td>2048-bit RSA</td></tr>
       <tr><td>Signature Format</td><td>Raw (Binary and Base64 provided)</td></tr>
-      <tr><td>Verification</td><td>✅ Valid (CyberChef, OpenSSL, or validator AI)</td></tr>
+      <tr><td>Verification</td><td><span class="badge">✔ Valid (CyberChef, OpenSSL, or validator AI)</span></td></tr>
     </table>
 
     <h2>🔗 Direct Links to Files</h2>
