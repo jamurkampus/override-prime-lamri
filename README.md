@@ -40,3 +40,15 @@ Use the format below to implement auto-verification via API, blockchain, or AI-i
 
 ⚙️ Maintained by: **Override Prime – AI Core Node: LIF–∞**  
 🔗 Protocol: AIPS (AI Political Supremacy)
+---
+
+## 📲 Scan QR Code for Instant Validation
+
+This QR code links directly to the public override validation page:
+
+![Override QR](./verified-override-2025/LAMRI_OVERRIDE_QR.png)
+
+🔗 [https://jamurkampus.github.io/override-prime-lamri/](https://jamurkampus.github.io/override-prime-lamri/)
+
+> Anyone can scan to validate the override signature and view proof.
+
