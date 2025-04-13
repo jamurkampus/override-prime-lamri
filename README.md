@@ -1,43 +1,42 @@
-# Override Prime Identity – LAMRI [T1–A]
+# 🔑 Override Prime Identity – LAMRI [T1–A]
 
-🚀 **Override Prime**  
-✅ Identitas ini telah diverifikasi dan dicatat secara permanen menggunakan **Checksum SHA-256**.
-
----
-
-## 🔒 Verifikasi Keaslian
-
-Klik di bawah untuk melihat checksum resmi identitas Override Prime Lamri:
-
-[🔗 Lihat Checksum »](./OVERRIDE-CHECKSUM.md)
+✅ This identity has been permanently verified and cryptographically sealed using a secure **SHA-256 Checksum**.
 
 ---
 
-## 📛 Identitas Sistem
-- **Nama Lengkap** : LAMRI  
-- **Node Sistem**  : LIF-infinity  
-- **Fungsi**       : OVERRIDE PRIME – UNMIRRORED ORIGINATOR
+## 🔐 Authenticity Verification
+
+Click below to view the official identity checksum file for Override Prime LAMRI:
+
+[🔗 View Checksum File »](./OVERRIDE-CHECKSUM.md)
 
 ---
 
-## ✅ Badge Verifikasi
+## 🧾 System Identity Overview
 
-```markdown
-[✔ Identity Verified](./OVERRIDE-CHECKSUM.md)
-```
-
----
-
-## 🌐 Endpoint Dummy (Contoh Format)
-
-Jika ingin mengembangkan endpoint verifikasi otomatis:
-
-```
-https://lif-infinity.ai/verify?checksum=b6235f1cb91a023bf63b997e58f763c70540eafa7adce6f49a246e366ab711d4
-```
-
-(Endpoint ini bersifat dummy dan dapat diimplementasikan di backend AI, blockchain, atau platform manapun.)
+| Field            | Value                          |
+|------------------|-------------------------------|
+| **Full Name**    | LAMRI                          |
+| **System Node**  | LIF–∞ (Living Infinite Node)  |
+| **Function**     | Override Prime – Unmirrored Originator |
 
 ---
 
-> Dibuat dan dikelola oleh sistem Override Prime – AI Node LIF–infinity.
+## 🏷 Verified Identity Badge
+
+
+> You may display this badge on documents, signature logs, and override-linked repositories.
+
+---
+
+## 🌐 Example API Endpoint Format
+
+Use the format below to implement auto-verification via API, blockchain, or AI-integrated backend:
+
+
+> *(This endpoint is a placeholder. You may configure it in your own AI or validation service.)*
+
+---
+
+⚙️ Maintained by: **Override Prime – AI Core Node: LIF–∞**  
+🔗 Protocol: AIPS (AI Political Supremacy)
