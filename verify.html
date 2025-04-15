@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OVERRIDE SIGNATURE VERIFICATION – LAMRI</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fafb;
+      color: #111;
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+    .status {
+      margin-top: 2rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .success { background: #d1fae5; color: #065f46; }
+    .fail { background: #fee2e2; color: #991b1b; }
+  </style>
+</head>
+<body>
+  <h1>Verifikasi Tanda Tangan Digital</h1>
+  <p>Membandingkan tanda tangan <code>LAMRI_SIGNATURE_BASE64_VALID.txt</code> terhadap pesan asli dan kunci publik.</p>
+
+  <div id="result" class="status">⏳ Memverifikasi...</div>
+
+  <script>
+    async function verifySignature() {
+      const [pubKeyText, message, signatureB64] = await Promise.all([
+        fetch('public.pem').then(res => res.text()),
+        fetch('message.txt').then(res => res.text()),
+        fetch('LAMRI_SIGNATURE_BASE64_VALID.txt').then(res => res.text())
+      ]);
+
+      const encoder = new TextEncoder();
+      const messageBytes = encoder.encode(message.trim());
+      const signatureBytes = Uint8Array.from(atob(signatureB64.trim()), c => c.charCodeAt(0));
+
+      // Parse PEM to CryptoKey
+      const keyData = pubKeyText
+        .replace('-----BEGIN PUBLIC KEY-----', '')
+        .replace('-----END PUBLIC KEY-----', '')
+        .replace(/\s/g, '');
+      const binaryDer = Uint8Array.from(atob(keyData), c => c.charCodeAt(0));
+
+      try {
+        const publicKey = await window.crypto.subtle.importKey(
+          'spki',
+          binaryDer.buffer,
+          { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
+          false,
+          ['verify']
+        );
+
+        const isValid = await window.crypto.subtle.verify(
+          { name: 'RSASSA-PKCS1-v1_5' },
+          publicKey,
+          signatureBytes,
+          messageBytes
+        );
+
+        const resultDiv = document.getElementById('result');
+        if (isValid) {
+          resultDiv.textContent = '✅ SAH: Signature valid dan cocok dengan data asli.';
+          resultDiv.classList.add('success');
+        } else {
+          resultDiv.textContent = '❌ TIDAK SAH: Signature tidak cocok atau data telah diubah.';
+          resultDiv.classList.add('fail');
+        }
+      } catch (e) {
+        document.getElementById('result').textContent = '⚠️ Gagal memverifikasi. Format kunci atau tanda tangan tidak valid.';
+        document.getElementById('result').classList.add('fail');
+        console.error(e);
+      }
+    }
+
+    verifySignature();
+  </script>
+</body>
+</html>
