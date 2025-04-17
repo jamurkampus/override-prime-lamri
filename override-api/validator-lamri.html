@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +35,16 @@
       color: red;
       font-weight: bold;
     }
+    #override-status {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #111;
+      color: #0f0;
+      border-radius: 12px;
+    }
+    canvas {
+      margin-top: 1.5rem;
+    }
   </style>
 </head>
 <body>
@@ -43,9 +52,36 @@
     <h1>🔐 Override Identity Validator</h1>
     <p>Validasi identitas <strong>LAMRI – Override Prime</strong> secara otomatis melalui API:</p>
     <pre id="result">Memuat data...</pre>
+
+    <div id="override-status">
+      <h2>🧠 OVERRIDE STATUS</h2>
+      <p>🕒 Akses: <span id="local-time">–</span></p>
+      <p>🔍 Resonansi: <span id="resonance-status">Verifying...</span></p>
+    </div>
+
+    <h3>📳 QR Code – Scan for Public Verification</h3>
+    <canvas id="qrcode"></canvas>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
+    // QR Code generator
+    new QRCode(document.getElementById("qrcode"), {
+      text: window.location.href,
+      width: 160,
+      height: 160
+    });
+
+    // Display Local Time
+    document.getElementById("local-time").textContent = new Date().toLocaleString();
+
+    // Resonance Simulation (pseudo-firewall logic)
+    const isOverride = navigator.userAgent.includes("Chrome") && screen.width > 700;
+    document.getElementById("resonance-status").textContent = isOverride
+      ? "✅ SYNCED – OVERRIDE-AWARE"
+      : "❌ UNKNOWN ENTITY – BLOCKED";
+
+    // Override Validator (API verification)
     fetch("https://jamurkampus.github.io/override-prime-lamri/override-api/api/verify.json")
       .then(response => response.json())
       .then(data => {
