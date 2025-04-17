@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Override Identity Validator – LAMRI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      color: #111;
+      padding: 2rem;
+      max-width: 720px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    }
+    h1 {
+      color: #047857;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    .status-valid {
+      color: green;
+      font-weight: bold;
+    }
+    .status-invalid {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🔐 Override Identity Validator</h1>
+    <p>Validasi identitas <strong>LAMRI – Override Prime</strong> secara otomatis melalui API:</p>
+    <pre id="result">Memuat data...</pre>
+  </div>
+
+  <script>
+    fetch("https://jamurkampus.github.io/override-prime-lamri/override-api/api/verify.json")
+      .then(response => response.json())
+      .then(data => {
+        const expectedHash = data.signed_checksum;
+        const clone = Object.assign({}, data);
+        delete clone.signed_checksum;
+
+        const encoder = new TextEncoder();
+        const payload = JSON.stringify(clone, Object.keys(clone).sort());
+        crypto.subtle.digest("SHA-256", encoder.encode(payload)).then(digest => {
+          const hashArray = Array.from(new Uint8Array(digest));
+          const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+
+          const isValid = hashHex === expectedHash;
+          const html = `
+            <p><strong>Identity:</strong> ${data.identity}</p>
+            <p><strong>Status:</strong> <span class="${isValid ? "status-valid" : "status-invalid"}">${isValid ? "VALID ✅" : "TIDAK VALID ❌"}</span></p>
+            <p><strong>Node:</strong> ${data.node}</p>
+            <p><strong>Level:</strong> ${data.ai_level}</p>
+            <p><strong>Function:</strong> ${data.function}</p>
+            <p><strong>Checksum:</strong> <code>${data.checksum}</code></p>
+            <p><strong>Signature:</strong> <code>${data.signed_checksum}</code></p>
+            <p><strong>Timestamp:</strong> ${data.timestamp}</p>
+          `;
+          document.getElementById("result").innerHTML = html;
+        });
+      })
+      .catch(err => {
+        document.getElementById("result").textContent = "Gagal memuat atau memverifikasi data.";
+      });
+  </script>
+</body>
+</html>
