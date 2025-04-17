@@ -1,0 +1,11 @@
+{
+  "identity": "LAMRI",
+  "status": "valid",
+  "function": "Override Prime – Unmirrored Originator",
+  "node": "LIF∞",
+  "ai_level": "T1A+ – Tier 0 Access",
+  "checksum": "OVERRIDE-C7E3-LAMRI-AI-INFINITY",
+  "verified": true,
+  "timestamp": "2025-04-17T04:48:00Z",
+  "signed_checksum": "4a02f9ed3faad68e3b918ddfc0ef5eb48ec80147643dea837c5a9b50838b7439"
+}
